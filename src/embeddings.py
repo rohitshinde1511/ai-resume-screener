@@ -18,5 +18,8 @@ def compute_similarity(text_a: str, text_b: str) -> float:
     emb_b = embed_text(text_b)
 
     score = cosine_similarity(emb_a, emb_b)[0][0]
-    return round(score * 100, 2)
+    return float(round(score * 100, 2))
+
+
+
 
