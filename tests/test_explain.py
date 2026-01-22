@@ -5,11 +5,17 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.explain import generate_explanation
 
-text = generate_explanation(
-    similarity_score=0.78,
-    matched_skills=["Python", "SQL"],
-    missing_skills=["Docker", "FastAPI"],
-    bias_signals=["Gendered pronouns detected"],
-)
 
-print(text)
+def test_generate_explanation_basic():
+    explanation = generate_explanation(
+        similarity_score=78.0,
+        matched_skills=["python", "sql"],
+        missing_skills=["docker", "fastapi"],
+        bias_signals=["gendered pronouns detected"]
+    )
+
+    assert isinstance(explanation, str)
+    assert "similarity score" in explanation.lower()
+    assert "python" in explanation.lower()
+    assert "sql" in explanation.lower()
+    assert "docker" in explanation.lower()
